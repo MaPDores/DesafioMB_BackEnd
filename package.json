@@ -4,14 +4,26 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "cors": "^2.8.5",
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.4",
+    "@babel/plugin-transform-async-to-generator": "^7.4.4",
+    "@babel/plugin-transform-runtime": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "@babel/runtime": "^7.4.4",
     "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.0.0",
     "express": "^4.16.4",
-    "mongoose": "^5.5.4"
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.5.4",
+    "mysql2": "^1.6.5",
+    "nodemailer": "^6.1.1",
+    "sequelize": "^5.8.4"
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node index.js"
+    "build": "babel src -d app --source-maps",
+    "start": "npm run build && node app/server.js"
   },
   "keywords": [],
   "author": "",

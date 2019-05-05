@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../../src/database/mysql/model/user.js"],"names":["Sequelize","require"],"mappings":";;;;AACA;;AADA,IAAMA,SAAS,GAAGC,OAAO,CAAC,WAAD,CAAzB","sourcesContent":["const Sequelize = require('sequelize');\r\nimport db from '../database';\r\n\r\n"],"file":"user.js"}
