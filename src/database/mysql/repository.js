@@ -14,25 +14,33 @@ export async function findOrCreate(model, payload){
     }
 }
 
-export async function find(model, payload){
+export async function findAll(model, payload){
     try{
-        return await model.find(payload);
+        return await model.findAll(payload);
     }catch(err){
         console.log(err);
     }
 }
 
-export async function update(model, payload){
+export async function find(model, query){
     try{
-        return await model.update(contition, payload.data, payload.filter);
+        return await model.find(query);
     }catch(err){
         console.log(err);
     }
 }
 
-export async function findOne(model, payload){
+export async function update(model, payload, query){
     try{
-        return await model.findOne(payload);
+        return await model.update(payload, query);
+    }catch(err){
+        console.log(err);
+    }
+}
+
+export async function findOne(model, query){
+    try{
+        return await model.findOne(query);
     }catch(err){
         console.log(err);
     }

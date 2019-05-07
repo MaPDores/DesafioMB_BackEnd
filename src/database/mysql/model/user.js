@@ -1,5 +1,4 @@
-import crypto from 'crypto';
-export default (sequelize, datatypes) => sequelize.define('user', {
+module.exports = (sequelize, datatypes) => sequelize.define('user', {
     id: {
         primaryKey: true,
         type: datatypes.UUID,
@@ -18,14 +17,16 @@ export default (sequelize, datatypes) => sequelize.define('user', {
     },
 
     hash:{
-        type: datatypes.STRING(64),
+        type: datatypes.STRING(256),
         allowNull: false
     },
 
     salt:{
-        type: datatypes.STRING(16)
+        type: datatypes.STRING(256),
+        allowNull: false
     }
 
 }, {
-    tableName: "users" 
+    tableName: "users",
+    timestamps: false
 });

@@ -14,8 +14,10 @@ sequelize.authenticate()
 });
 
 const user = require('./model/user')(sequelize, Sequelize);
-
 const sensor = require('./model/sensor')(sequelize, Sequelize);
+
+user.hasMany(sensor, { foreignKey: 'user_id' });
+sensor.belongsTo(user, { foreignKey: 'user_id'});
 
 const database = {
     Sequelize,

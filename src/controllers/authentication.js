@@ -1,12 +1,12 @@
 import jwt from 'jsonwebtoken';
+import crypto from 'crypto';
 
 export function setUser(payload){
-    const Salt = crypto.randomBytes(16).toString(16);
-    const Hash =    crypto.pbkdf2Sync(payload.password, Salt, 1000, 64, 'sha512').toString(16);
+
+    const Salt = crypto.randomBytes(16).toString('hex');
+    const Hash = crypto.pbkdf2Sync(payload.password, Salt, 1000, 64, 'sha512').toString('hex');
 
     const user = {
-        
-        id: payload.id,
         
         email: payload.email,
         
@@ -17,26 +17,29 @@ export function setUser(payload){
         salt: Salt
     
     }
+
     return user;
 }
 
-export function validatePassword(auth, user){
-    const hash = crypto.pbkdf2Sync(auth.password, user.salt, 1000, 64, 'sha512').toString('hex');  
+export function validatePassword(password, user){
+    const hash = crypto.pbkdf2Sync(password, user.salt, 1000, 64, 'sha512').toString('hex');  
 
     return user.hash === hash;
 }
 
-export function generateJwt(user){
-
+export function generateJwt(payload){
+    const expiry = new Date();
+    expiry.setDate(expiry.getDate() + 7);
+    
     return jwt.sign({
     
-        id: user.id,
+        id: payload.id,
 
-        email: user.email,
+        email: payload.email,
         
-        name: user.name
-    
-    }, process.env.SECRET, {
-        expiresIn: "12h"
-    });
+        name: payload.name,
+        
+        exp: parseInt(expiry.getTime() / 1000)
+        
+    }, process.env.SECRET);
 }
