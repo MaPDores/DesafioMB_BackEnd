@@ -1,7 +1,7 @@
 import mysql from '../database/mysql/database';
 import * as mysqlRepository from '../database/mysql/repository';
 import * as auth from './authentication';
-
+import email from '../config/email';
 
 export async function register (req, res){
     try{
@@ -84,11 +84,5 @@ export async function getProfile (req, res){
 
     }catch(err){
         res.status(500).json({ status: "Internal Server Error!"});
-    }
-}
-
-export async function logout (req, res){
-    if(!req.payload.id){
-        return res.status(200).json({ token: null });
     }
 }

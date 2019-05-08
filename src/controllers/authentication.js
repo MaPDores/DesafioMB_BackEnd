@@ -39,7 +39,7 @@ export function generateJwt(payload){
         
         name: payload.name,
         
-        exp: parseInt(expiry.getTime() / 1000)
+        exp: parseInt(expiry.getTime())
         
     }, process.env.SECRET);
 }
