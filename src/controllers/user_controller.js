@@ -1,7 +1,6 @@
 import mysql from '../database/mysql/database';
 import * as mysqlRepository from '../database/mysql/repository';
 import * as auth from './authentication';
-import email from '../config/email';
 
 export async function register (req, res){
     try{

@@ -29,7 +29,7 @@ export async function updateSensorCredentials(req, res){
     try{
         const user_id = req.payload.id;
         const sensor_id = req.params.id;
-        
+
         if(!user_id){
             return res.status(401).json({ error: "UnauthorizedError" });
         }
@@ -71,23 +71,6 @@ export async function getSensor(req, res){
 
         res.status(200).json(sensor_data);
     }catch(err){
-        res.status(500).json({ status: 'Internal Server Error!' });
-    }
-}
-
-export async function retrieveSensors(req, res){
-    try{
-        const user_id = req.payload.id;
-
-        if(!user_id){
-            return res.status(401).json({ error: "UnauthorizedError" });
-        }
-        const sensor_data_array = await mongodbRepository.find(sensor, { id: { $in: req.body.sensor_id_array }});
-
-        res.status(200).json(sensor_data_array);
-
-    }catch(err){
-        console.log(err);
         res.status(500).json({ status: 'Internal Server Error!' });
     }
 }

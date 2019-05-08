@@ -17,8 +17,7 @@ routes.post('/login', user_controller.login);
 routes.post('/sensor/:id', sensor_controller.updateSensorData);
 
 routes.get('/profile', auth, user_controller.getProfile);
-routes.get('/sensor/:id', auth, sensor_controller.getSensor); //PEGAR SENSOR POR SENSOR
-routes.get('/profile/sensor', auth, sensor_controller.retrieveSensors); //PEGA TODOS JUNTOS NO LOAD DA PÁG
+routes.get('/sensor/:id', auth, sensor_controller.getSensor); 
 
 routes.put('/sensor/:id', auth, sensor_controller.updateSensorCredentials);
 
